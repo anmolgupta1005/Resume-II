@@ -8,6 +8,11 @@ services:
   - Docker
 
 before_install:
+  - sudo apt-get install apt-file
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
   - docker build -t latex_compiler .
   - docker run latex_compiler
   - docker ps -a
