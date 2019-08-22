@@ -20,6 +20,5 @@ VOLUME ["/data"]
 
 ADD src /data/.
 
-ENTRYPOINT ["ls" "-R" "/data"]
-
+CMD ["ls" "-R" "/data"]
 CMD ["latexmk", "--verison"]
