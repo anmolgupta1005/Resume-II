@@ -8,6 +8,10 @@ services:
   - Docker
 
 before_install:
+  - sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
   - sudo apt-get update -q
   - sudo apt-get install -qy docker-ce docker-ce-cli containerd.io --upgrade
   - docker build
