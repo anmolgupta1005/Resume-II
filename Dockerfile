@@ -9,7 +9,7 @@ RUN apt-get update -q && apt-get install -qy \
     ca-certificates \
     curl \
     gnupg-agent \
-    software-properties-common
+    software-properties-common \
     texlive-full \
     python-pygments gnuplot \
     make git \
