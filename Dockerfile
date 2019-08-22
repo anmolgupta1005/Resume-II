@@ -17,3 +17,5 @@ RUN apt-get update -q && apt-get install -qy \
 
 WORKDIR /data
 VOLUME ["/data"]
+
+CMD ["latexmk", "--verison"]
