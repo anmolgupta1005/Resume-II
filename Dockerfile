@@ -21,4 +21,4 @@ VOLUME ["/data"]
 ADD src /data/.
 
 CMD ["ls" "-R" "/data"]
-CMD ["latexmk", "--verison"]
+CMD ["latexmk", "--version"]
