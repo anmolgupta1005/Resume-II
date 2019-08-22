@@ -1,6 +1,6 @@
 FROM ubuntu:bionic
 
-MAINTAINER Anmol Gupta <anmol.gupta1005@gmail.com>
+LABEL MAINTAINER="Anmol Gupta <anmol.gupta1005@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -17,5 +17,9 @@ RUN apt-get update -q && apt-get install -qy \
 
 WORKDIR /data
 VOLUME ["/data"]
+
+ADD src /data/.
+
+ENTRYPOINT ["ls" "-R" ]
 
 CMD ["latexmk", "--verison"]
