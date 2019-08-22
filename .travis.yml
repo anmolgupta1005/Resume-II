@@ -1,1 +1,14 @@
+sudo:
+  true
 
+language:
+  generic
+
+services:
+  - Docker
+
+before_install:
+  - sudo apt-get update -q
+  - apt-get install -qy docker-ce docker-ce-cli containerd.io --upgrade
+  - docker build
+  - docker ps -a
