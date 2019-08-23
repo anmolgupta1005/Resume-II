@@ -4,15 +4,30 @@ sudo:
 language:
   generic
 
+# We need Docker here
 services:
   - Docker
 
+# Prepare package manager apt
 before_install:
   - sudo apt-get install apt-file
+  - sudo apt-get -yq update
+
+# Get the latest version of Docker to run on Travis virtual core
+install:
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-  - sudo apt-get update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+
+# Build the latex embedded Docker image
+before_script:
   - docker build -t latex_compiler .
-  - docker run -d --rm --name Resume_builder -i --user="$(id -u):$(id -g)" --net=none -t -v $PWD:/data latex_compiler
-  - docker ps -a
+
+# Run the Docker image in a container
+script: >
+  - docker run -d --rm --name Resume_builder -t --user="$(id -u):$(id -g)"
+  --net=none -v $PWD:/data latex_compiler
+  latexmk -cd -f -lualatex -interaction=nonstopmode -synctex=1
+  -outdir=/data/out -auxdir=/data/build cv.tex
+
+after_success:

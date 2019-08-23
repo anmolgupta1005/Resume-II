@@ -12,6 +12,3 @@ ADD src /data/.
 RUN apt-get update -q && apt-get install -qy \
     texlive-full \
     && rm -rf /var/lib/apt/lists/*
-
-CMD ["latexmk", "-cd", "-f", "-lualatex", "-interaction=nonstopmode",\
-    "-synctex=1", "cv.tex"]
