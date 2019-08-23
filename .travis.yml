@@ -29,21 +29,22 @@ jobs:
   include:
     script: scripts/./latex_compiler.sh
 
-# If latex document successfully build, copy back to repo
+# If latex document successfully build, copy back to Travis's Virtual Env
 after_success:
-  - docker cp Resume_Builder:/data/out/* .
+  - docker cp Resume_Builder:/data/out/Resume_Anmol_Gupta.pdf .
 
-# Setup tag name
+# Setup tag name for deployment
 before_deploy:
   - git config --local user.name "anmolgupta1005"
   - git config --local user.email "anmol.gupta1005@gmail.com"
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')}
   - git tag $TRAVIS_TAG
 
+# Push the output file to the repo as a release.
 deploy:
   - provider: releases
   - api_key: "$GITHUB_OAUTH_TOKEN"
-  - file:
+  - file: "./Resume_Anmol_Gupta.pdf"
   - skip_cleanup: true
-  on:
-    tags: true
+    on:
+      tags: true
