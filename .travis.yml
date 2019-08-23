@@ -12,6 +12,7 @@ services:
 before_install:
   - sudo apt-get install apt-file
   - sudo apt-get -yq update
+  - sudo chmod ugo+x scripts/latex_compiler.sh
 
 # Get the latest version of Docker to run on Travis virtual core
 install:
@@ -24,10 +25,25 @@ before_script:
   - docker build -t latex_compiler .
 
 # Run the Docker image in a container
-script: >
-  - docker run -d --rm --name Resume_builder -t --user="$(id -u):$(id -g)"
-  --net=none -v $PWD:/data latex_compiler
-  latexmk -cd -f -lualatex -interaction=nonstopmode -synctex=1
-  -outdir=/data/out -auxdir=/data/build cv.tex
+jobs:
+  include:
+    script: scripts/./latex_compiler.sh
 
+# If latex document successfully build, copy back to repo
 after_success:
+  - docker cp Resume_Builder:/data/out/* .
+
+# Setup tag name
+before_deploy:
+  - git config --local user.name "anmolgupta1005"
+  - git config --local user.email "anmol.gupta1005@gmail.com"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')}
+  - git tag $TRAVIS_TAG
+
+deploy:
+  - provider: releases
+  - api_key: "$GITHUB_OAUTH_TOKEN"
+  - file:
+  - skip_cleanup: true
+  on:
+    tags: true
