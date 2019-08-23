@@ -10,15 +10,8 @@ VOLUME ["/data"]
 ADD src /data/.
 
 RUN apt-get update -q && apt-get install -qy \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common \
     texlive-full \
-    python-pygments gnuplot \
-    make git \
-    && rm -rf /var/lib/apt/lists/* \
-    && ls -R /data
+    && rm -rf /var/lib/apt/lists/*
 
-CMD ["latexmk", "--version"]
+CMD ["latexmk", "-cd", "-f", "-lualatex", "-interaction=nonstopmode",\
+    "-synctex=1", "cv.tex"]
