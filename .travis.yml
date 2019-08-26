@@ -10,41 +10,33 @@ services:
 
 # Prepare package manager apt
 before_install:
-  - sudo apt-get install apt-file
-  - sudo apt-get -yq update
+#  - sudo apt-get install apt-file
+#  - sudo apt-get -yq update
   - sudo chmod ugo+x scripts/latex_compiler.sh
 
 # Get the latest version of Docker to run on Travis virtual core
 install:
-  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+#  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+#  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+#  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
 # Build the latex embedded Docker image
-before_script:
-  - docker build -t latex_compiler .
+#before_script:
+#  - docker build -t latex_compiler .
 
 # Run the Docker image in a container
 jobs:
   include:
     script: scripts/./latex_compiler.sh
 
-# If latex document successfully build, copy back to Travis's Virtual Env
-after_success:
-  - docker cp Resume_Builder:/data/out/Resume_Anmol_Gupta.pdf .
-
-# Setup tag name for deployment
-before_deploy:
-  - git config --local user.name "anmolgupta1005"
-  - git config --local user.email "anmol.gupta1005@gmail.com"
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')}
-  - git tag $TRAVIS_TAG
-
-# Push the output file to the repo as a release.
+# Deploy the resume as a tag in the repo directly from Travis
 deploy:
-  - provider: releases
-  - api_key: "$GITHUB_OAUTH_TOKEN"
-  - file: "./Resume_Anmol_Gupta.pdf"
-  - skip_cleanup: true
-    on:
-      tags: true
+  provider: releases
+  api_key:
+    secure: Ig4Aqbx2C2Su9ynf73R9Q8XF3U6kLfZWzUqkQvPGma44eSR/w/AzLFNqLvPV3cMd4zx9LGm2yaIOdYA8xgGrbTY4wmjJgVy5uI22xmeVEtFLTDg8hWeqLvelIykVXTO727gzU8ookWdfPNfeJhCSzpNiWFUwVVW5rWQX9AllawO319BjI4wZot50p4ONpYZ89bYfAwP5ZPiVLTRKc5Gc2q2YKwQl1BD3G3jsLE2iBg56gQnV9rArLIivAx32hGpHN6+SzkQO/Q8GAdn103hY16UmrO9LTpf236/UeT3nUqe4iKUG6fL36JMuiK4nUTVHOkrMOQV+Qg88yIpjYZq+rveIIBJQqjiOQlo03LPQ3xlvHg0iXdr6ymb5igR66Kxy0/lXfdueLN87bUrHLz1QNn73LEAqDAiVtuGp+18GowqpR5PCVhYHu1vS2OT+avrcmTWqB2O+ELA2Vw8ajX4ZcYEoYM4XQQo+YgLJkMu+HkzrxGYwfpqOWsQVYaumm06kg2/C5xVLIzPtuZRvmY+nufHu64jn/xoicX9LuShiO2B5SgV3yjFAhrCeTPb9gs826j7W5+JA4OLfHo69QqdFk/8aq9EtbVIwFK6MM69ZBlS4d0agM+fy0UKzSO/3l8RCwpDBi9+TJoAJDZMuvey82y/6IwjkeRgonJ5yOoM5hTw=
+  file: Resume_Anmol_Gupta.pdf
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: anmolgupta1005/Resume-II
+
