@@ -64,7 +64,7 @@
 
 % Dependences
 %A Few Useful Packages
-\RequirePackage[english,french]{babel}
+\RequirePackage[english]{babel}
 \RequirePackage[utf8]{luainputenc}
 \RequirePackage{fontspec} 					                 % for loading fonts
 \RequirePackage{url,parskip} 	    % other packages for formatting
@@ -82,6 +82,7 @@
 \RequirePackage[skins]{tcolorbox}
 \RequirePackage{fancyhdr}
 \RequirePackage{ifthen}
+\RequirePackage{bibentry}
 
 
 \DeclareUnicodeCharacter{00E9}{\'{e}}
@@ -187,10 +188,21 @@
 \newcommand{\mediumSymbol}{\faMedium}
 \newcommand{\bitbucketSymbol}{\faBitbucket}
 \newcommand{\websiteSymbol}{\faLink}
+\newcommand{\trelloSymbol}{\faTrello}
+\newcommand{\bookSymbol}{\faBook}
 
 
 \newcommand\link[2]{\color{linkcolor}\href{#1}{#2}\color{Black} }
 \newcommand\important[1]{\textbf #1}
+
+% hanging publications: 1st line starts at beginning of line, 
+% further lines are placed a bit to the right
+\usepackage{hanging}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{breakcites}
+\newcommand\publication[1]{%
+  \smallskip\par\hangpara{1.5em}{1}\bibentry{#1}\smallskip
+}
 
 % Create a tag
 % Usage: \cvtag{<tag label>}
