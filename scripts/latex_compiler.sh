@@ -21,8 +21,6 @@ docker exec -t $CONTAINER_NAME $LATEX_BUILD
 # Go fetch the output
 docker cp $CONTAINER_NAME:/data/out/$OUTPUT_NAME.pdf .
 
-touch $OUTPUT_NAME.pdf
-
 # Check if the output was produced, aka copied to host from the container
 if [  -f ./$OUTPUT_NAME.pdf ]; then
     exit 0;
