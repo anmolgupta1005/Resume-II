@@ -33,6 +33,7 @@ before_deploy:
   - git config --local user.name anmolgupta1005
   - git config --local user.email anmol.gupta1005@gmail.com
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')}
+  - echo $TRAVIS_TAG
   - git tag $TRAVIS_TAG
 
 # Deploy the resume as a tag in the repo directly from Travis
