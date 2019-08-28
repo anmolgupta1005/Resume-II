@@ -29,18 +29,21 @@ jobs:
   include:
     script: scripts/./latex_compiler.sh
 
-before_deploy:
-  - git config --local user.name anmolgupta1005
-  - git config --local user.email anmol.gupta1005@gmail.com
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')}
-  - echo $TRAVIS_TAG
+# If latex document successfully build, tag this commit
+after_success:
+  - export TRAVIS_TAG="Resume_Anmol_Gupta:$(date +'%Y/%m/%d-%H:%M:%S')"
   - git tag $TRAVIS_TAG
+
+# Setup the git configuration details
+before_deploy:
+  - git config user.name anmolgupta1005
+  - git config user.email anmol.gupta1005@gmail.com
 
 # Deploy the resume as a tag in the repo directly from Travis
 deploy:
   provider: releases
   api_key:
-    secure: Ig4Aqbx2C2Su9ynf73R9Q8XF3U6kLfZWzUqkQvPGma44eSR/w/AzLFNqLvPV3cMd4zx9LGm2yaIOdYA8xgGrbTY4wmjJgVy5uI22xmeVEtFLTDg8hWeqLvelIykVXTO727gzU8ookWdfPNfeJhCSzpNiWFUwVVW5rWQX9AllawO319BjI4wZot50p4ONpYZ89bYfAwP5ZPiVLTRKc5Gc2q2YKwQl1BD3G3jsLE2iBg56gQnV9rArLIivAx32hGpHN6+SzkQO/Q8GAdn103hY16UmrO9LTpf236/UeT3nUqe4iKUG6fL36JMuiK4nUTVHOkrMOQV+Qg88yIpjYZq+rveIIBJQqjiOQlo03LPQ3xlvHg0iXdr6ymb5igR66Kxy0/lXfdueLN87bUrHLz1QNn73LEAqDAiVtuGp+18GowqpR5PCVhYHu1vS2OT+avrcmTWqB2O+ELA2Vw8ajX4ZcYEoYM4XQQo+YgLJkMu+HkzrxGYwfpqOWsQVYaumm06kg2/C5xVLIzPtuZRvmY+nufHu64jn/xoicX9LuShiO2B5SgV3yjFAhrCeTPb9gs826j7W5+JA4OLfHo69QqdFk/8aq9EtbVIwFK6MM69ZBlS4d0agM+fy0UKzSO/3l8RCwpDBi9+TJoAJDZMuvey82y/6IwjkeRgonJ5yOoM5hTw=
+    secure: Dyg6O2nufzuIfYkjmTV5gR2bfnGK4A5nXbBPZXWj4yekRHiBxp+xLtWANfsFpG2zwtbj/a6cCFbSAcINaa8c3CokzSAkN6yfIC8H73/7TBU7m3F7C50DSGsuSVygZxnZnYFaOa5GD6kR/Uc59jAVj274HbZ7Gdux8YPAq+Y7AeXfz2N7TmTa3iJZ6/Vx/ZRxNQY4/qoHmSvyHjHJrhvX2Sh+Dmdyu2n/1amtvhxMg62p5bjM4CtAITTSmmhAX0zU03cRjhLi9tcdiwrvs82PkvXY/CSOHhjKBMwGRMhbjuL50yZ3RJ6bbiW2UzzLFMFOEPLuVK26Pv4eYzTlEIg1eAobfwDK3eK6idZ/0RcKXoYB1ZjbBjtNoV/UUo/v82IeepRf7LsD5DWv/xN1oHOMHVfEJtOT8qGrGgPVzJh14v2SzVa3E33Vg8SXIpGRzAc2LtNCGFPQONjXWj6UhkZn8yqS1Y+OVTnuOM72qbP2UtNnt3WW0QhvP9psCO04B5vJeaK+YYFPqhflDOYe/RwuAL3K+zUFR6INU4C0l8DlzNvsfjO+BiSjma4N5dmW2YOFQMAPMCtF8ZU2XHMwwI4pbqDYbWhvIlGW1GXUh+z9WbYV1ER+E41W+nCKPHa+FWCUqTHuyvqmR8hA8u3ToUBJCVGC39L50sEjdPR6+9qhTsM=
   file: Resume_Anmol_Gupta.pdf
   skip_cleanup: true
   on:
