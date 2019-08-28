@@ -10,8 +10,8 @@ services:
 
 # Prepare package manager apt
 before_install:
-#  - sudo apt-get install apt-file
-#  - sudo apt-get -yq update
+  # - sudo apt-get install apt-file
+  # - sudo apt-get -yq update
   - sudo chmod ugo+x scripts/latex_compiler.sh
 
 # Get the latest version of Docker to run on Travis virtual core
@@ -31,7 +31,7 @@ jobs:
 
 # If latex document successfully build, tag this commit
 after_success:
-  - export TRAVIS_TAG="Resume_Anmol_Gupta:$(date +'%Y/%m/%d-%H:%M:%S')"
+  - export TRAVIS_TAG="Resume_Anmol_Gupta-$(date +'%Y-%m-%d-%H-%M-%S')"
   - git tag $TRAVIS_TAG
 
 # Setup the git configuration details
@@ -42,8 +42,7 @@ before_deploy:
 # Deploy the resume as a tag in the repo directly from Travis
 deploy:
   provider: releases
-  api_key:
-    secure: Dyg6O2nufzuIfYkjmTV5gR2bfnGK4A5nXbBPZXWj4yekRHiBxp+xLtWANfsFpG2zwtbj/a6cCFbSAcINaa8c3CokzSAkN6yfIC8H73/7TBU7m3F7C50DSGsuSVygZxnZnYFaOa5GD6kR/Uc59jAVj274HbZ7Gdux8YPAq+Y7AeXfz2N7TmTa3iJZ6/Vx/ZRxNQY4/qoHmSvyHjHJrhvX2Sh+Dmdyu2n/1amtvhxMg62p5bjM4CtAITTSmmhAX0zU03cRjhLi9tcdiwrvs82PkvXY/CSOHhjKBMwGRMhbjuL50yZ3RJ6bbiW2UzzLFMFOEPLuVK26Pv4eYzTlEIg1eAobfwDK3eK6idZ/0RcKXoYB1ZjbBjtNoV/UUo/v82IeepRf7LsD5DWv/xN1oHOMHVfEJtOT8qGrGgPVzJh14v2SzVa3E33Vg8SXIpGRzAc2LtNCGFPQONjXWj6UhkZn8yqS1Y+OVTnuOM72qbP2UtNnt3WW0QhvP9psCO04B5vJeaK+YYFPqhflDOYe/RwuAL3K+zUFR6INU4C0l8DlzNvsfjO+BiSjma4N5dmW2YOFQMAPMCtF8ZU2XHMwwI4pbqDYbWhvIlGW1GXUh+z9WbYV1ER+E41W+nCKPHa+FWCUqTHuyvqmR8hA8u3ToUBJCVGC39L50sEjdPR6+9qhTsM=
+  api_key: ZawuPKWbS/R9LKg4/uLFfR7bjuNoL2HTFWSYIPUrkb4+7csZ8TeXPnb/6DYASigUBHNTysxzN4XYcKuBdwsW9JcOHlROc7qNaa97cBd4hBK2Ik8n2oIWIWHyFwOQ8mZKHdmiJte9iEsq7eYHbxzLEbR92VD4Rc2yl3TV5aRfZXz7SWUXUzdhHwU/kPZOgQKqNkqCrif6rde44EOafRMG8iQ40Ngps2ePazOWiMp88dyn7SrARMiwPi77av6GPQfzBjaO3B1lcyU7U07JVlNLWKMhsIhN0tHlYRP8kRp5v12Lkj69jkOoTvTacKDXJCyhd5zKP6BAHgTbC5ZDPp1xy2GnPuXFWhs/Fl551rGQYl4b8Jz/1pQkBtYo1GcXgN3UrAhE7q87l4YgCWGS62wUzOYMJ92k6Ts0oOFAKMu8t7flmrcwY2oRbzOey6gfVXHUKlYM9Mv/UZq7kNySFCws9oNg0ajHuVlhzId9Jk/cHAyNrHaqKCXqfOVCm24JRXoZb2Or/Lv6MtmNnoOvSW+0sqczduALCBmZr5J6i6sa6npd/t7/1PeOCOZ8LiylvTTYSVJ2+PYAwk7QdtzCFGJuTbeZIKZIvCn5bqFL8ARlys8YJ4Lw7h+/q49hh4WLZTeZnJ3g9L3RJmfzxX9yYw0x5pi0yTZHqntIpTans9nMqoI=
   file: Resume_Anmol_Gupta.pdf
   skip_cleanup: true
   on:
