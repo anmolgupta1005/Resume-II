@@ -45,4 +45,6 @@ deploy:
   on:
     tags: true
     repo: anmolgupta1005/Resume-II
+    branches:
+      only: master
 
