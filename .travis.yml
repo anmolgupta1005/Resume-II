@@ -10,15 +10,15 @@ services:
 
 # Prepare package manager apt
 before_install:
-  # - sudo apt-get install apt-file
-  # - sudo apt-get -yq update
+  - sudo apt-get install apt-file
+  - sudo apt-get -yq update
   - sudo chmod ugo+x scripts/latex_compiler.sh
 
 # Get the latest version of Docker to run on Travis virtual core
 install:
-#  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-#  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-#  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
 # Build the latex embedded Docker image
 before_script:
@@ -32,10 +32,7 @@ jobs:
 # If latex document successfully build, tag this commit
 after_success:
   - export TRAVIS_TAG="Resume_Anmol_Gupta-$(date +'%Y-%m-%d-%H-%M-%S')"
-  - ls -R
-  - git status
   - git tag $TRAVIS_TAG
-  - git show $TRAVIS_TAG
 
 # Setup the git configuration details
 before_deploy:
