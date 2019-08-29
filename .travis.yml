@@ -32,6 +32,7 @@ jobs:
 # If latex document successfully build, tag this commit
 after_success:
   - export TRAVIS_TAG="Resume_Anmol_Gupta-$(date +'%Y-%m-%d-%H-%M-%S')"
+  - ls -R
   - git tag $TRAVIS_TAG
 
 # Setup the git configuration details
@@ -42,12 +43,9 @@ before_deploy:
 # Deploy the resume as a tag in the repo directly from Travis
 deploy:
   provider: releases
-  api_key: ZawuPKWbS/R9LKg4/uLFfR7bjuNoL2HTFWSYIPUrkb4+7csZ8TeXPnb/6DYASigUBHNTysxzN4XYcKuBdwsW9JcOHlROc7qNaa97cBd4hBK2Ik8n2oIWIWHyFwOQ8mZKHdmiJte9iEsq7eYHbxzLEbR92VD4Rc2yl3TV5aRfZXz7SWUXUzdhHwU/kPZOgQKqNkqCrif6rde44EOafRMG8iQ40Ngps2ePazOWiMp88dyn7SrARMiwPi77av6GPQfzBjaO3B1lcyU7U07JVlNLWKMhsIhN0tHlYRP8kRp5v12Lkj69jkOoTvTacKDXJCyhd5zKP6BAHgTbC5ZDPp1xy2GnPuXFWhs/Fl551rGQYl4b8Jz/1pQkBtYo1GcXgN3UrAhE7q87l4YgCWGS62wUzOYMJ92k6Ts0oOFAKMu8t7flmrcwY2oRbzOey6gfVXHUKlYM9Mv/UZq7kNySFCws9oNg0ajHuVlhzId9Jk/cHAyNrHaqKCXqfOVCm24JRXoZb2Or/Lv6MtmNnoOvSW+0sqczduALCBmZr5J6i6sa6npd/t7/1PeOCOZ8LiylvTTYSVJ2+PYAwk7QdtzCFGJuTbeZIKZIvCn5bqFL8ARlys8YJ4Lw7h+/q49hh4WLZTeZnJ3g9L3RJmfzxX9yYw0x5pi0yTZHqntIpTans9nMqoI=
-  file: Resume_Anmol_Gupta.pdf
   skip_cleanup: true
+  api_key:
+    secure: NfIOKWZOXMWru123Otzwqy65Ym0xWFA8uY6RXyx1THciRsq1ER/0f5siexPqk1qd3axOSSAs3SudN5sKfkYau205qLCQI3J4mKL97QcdHq/3ZZgG+KfgFu+higJ9oJpVjSdpO0x3u77FJ1B84AvpkgISwqQPitCSnQ5p+g87FLYtRRa2PUycbnvAxsbg8HNK7L83+XDShWuAejWZ1CCNiEcVtL54allWqRLuA+DCO8wQ5qpa5DnlV5Otrcg9ybfUyIaxmZUrHmP3CeUSPg6wXFG6RPn4bL2W/iChTtFqGgEFENZ3158ES+2+H8MKiV8Db+sB/K8JhBOBHuHrJxKQX7ZZCrJnGL4OkCTdw+vazxUcyH6vkWJfCUbpMQH+351jKtGIvvnmhegRvhXWSLhHoypxuSwG5i63eh/TMcqJ49+ANZpjrH8c+NsXoaLhiKOU5W3ZhE+5n/T8Fw9uy1EUekn+3+pefHWg28QgxXX6CDaNmy2ArMKBlWku/dyg/g6MIW7TBONUM33f3fdxKEbFEzO2GI3VDA4KViqKjk4cFqiqCeXB6rDD6ylVz/GA4k5dXxnUrWeTmh0tx07VhSuKqFm1DfytkpTIrOjB3ocd6NrvIMQPnLPx/BqX9m4X0nc1gvUYqiZKHRCytuBaqyT8bONziv9P63iNn7dwGyALrKQ=
+  file: Resume_Anmol_Gupta.pdf
   on:
-    tags: true
     repo: anmolgupta1005/Resume-II
-    branches:
-      only: master
-
