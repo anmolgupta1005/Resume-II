@@ -33,7 +33,9 @@ jobs:
 after_success:
   - export TRAVIS_TAG="Resume_Anmol_Gupta-$(date +'%Y-%m-%d-%H-%M-%S')"
   - ls -R
+  - git status
   - git tag $TRAVIS_TAG
+  - git show $TRAVIS_TAG
 
 # Setup the git configuration details
 before_deploy:
