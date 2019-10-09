@@ -24,5 +24,5 @@ On the newly produced `.travis.yml` Change the following:
 3. (Optional) Change the name of the tag as desired.
 
 
-## Acknowledgements:
+## Acknowledgments:
 Based on resume from Christophe Roger (aka Darwin) hosted on [Github](https://github.com/darwiin/yaac-another-awesome-cv)
