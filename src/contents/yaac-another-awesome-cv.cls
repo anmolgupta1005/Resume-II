@@ -190,6 +190,7 @@
 \newcommand{\websiteSymbol}{\faLink}
 \newcommand{\trelloSymbol}{\faTrello}
 \newcommand{\bookSymbol}{\faBook}
+\newcommand{\dockerSymbol}{\faDocker}
 
 
 \newcommand\link[2]{\color{linkcolor}\href{#1}{#2}\color{Black} }
