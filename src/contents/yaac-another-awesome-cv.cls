@@ -83,6 +83,7 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{ifthen}
 \RequirePackage{bibentry}
+\RequirePackage{setspace}
 
 
 \DeclareUnicodeCharacter{00E9}{\'{e}}
@@ -481,9 +482,9 @@
 %   {<Project description>}
 %   {<techno1>,<techno2>}
 \newcommand\project[5]{
-  \begin{minipage}[t]{\dimexpr(\linewidth) - 2em}
+  \begin{minipage}[t]{\dimexpr(\linewidth) - 2.5em}
     \textbf{\textsc{#1}} \hfill \textsc{#2}\smallskip\\
-    #3\\
+    \begin{spacing}{2}#3\end{spacing}\\
     #4\smallskip\\
     \footnotesize{\foreach \n in {#5}{\cvtag{\n}}}\\
   \end{minipage}
