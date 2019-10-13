@@ -83,6 +83,7 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{ifthen}
 \RequirePackage{bibentry}
+\RequirePackage{setspace}
 
 
 \DeclareUnicodeCharacter{00E9}{\'{e}}
