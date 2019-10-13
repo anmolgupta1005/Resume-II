@@ -19,7 +19,7 @@
 
 \ProvidesClass{yaac-another-awesome-cv}[2019/06/18  v2.0.0 'YAAC: Another Awesome CV' Class]
 
-\def\@@ptsize{10pt}
+\def\@@ptsize{12pt}
 
 \DeclareOption{10pt}{\def\@@ptsize{10pt}}
 \DeclareOption{11pt}{\def\@@ptsize{11pt}}
@@ -481,7 +481,7 @@
 %   {<Project description>}
 %   {<techno1>,<techno2>}
 \newcommand\project[5]{
-  \begin{minipage}[t]{\dimexpr(\linewidth) - 1.5em}
+  \begin{minipage}[t]{\dimexpr(\linewidth) - 2em}
     \textbf{\textsc{#1}} \hfill \textsc{#2}\smallskip\\
     #3\\
     #4\smallskip\\
