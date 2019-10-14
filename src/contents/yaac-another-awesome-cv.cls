@@ -482,7 +482,7 @@
 %   {<Project description>}
 %   {<techno1>,<techno2>}
 \newcommand\project[5]{
-  \begin{minipage}[t]{\dimexpr(\linewidth) - 2em}
+  \begin{minipage}[t]{\dimexpr(\linewidth) - 1em}
     \textbf{\textsc{#1}} \hfill \textsc{#2}\smallskip\\
     #3\\
     #4\smallskip\\
